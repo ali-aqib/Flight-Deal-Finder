@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-SHEETY_ENDPIONT = "https://api.sheety.co/b6eaa84333f769ef62f5fbc558fb8abf/flightDeals/prices"
-
+SHEETY_ENDPOINT = "https://api.sheety.co/b6eaa84333f769ef62f5fbc558fb8abf/flightDeals/prices"
 
 
 class DataManager:
@@ -17,7 +16,7 @@ class DataManager:
         self.destination_data = {}
 
     def get_destination_data(self):
-        response = requests.get(url=SHEETY_ENDPIONT,
+        response = requests.get(url=SHEETY_ENDPOINT,
                                 auth=HTTPBasicAuth(self.sheety_username, self.sheety_password))
         response.raise_for_status()
         self.destination_data = response.json()["prices"]
@@ -26,10 +25,9 @@ class DataManager:
     def update_destination_codes(self):
         for row in self.destination_data:
             updated_row = {
-                "price": {"iataCode": row["iataCode"],
-                           }
+                "price": {"iataCode": row["iataCode"]}
             }
-            put = requests.put(url=f"{SHEETY_ENDPIONT}/{row['id']}",
+            write_data = requests.put(url=f"{SHEETY_ENDPOINT}/{row['id']}",
                                json=updated_row,
                                auth=HTTPBasicAuth(self.sheety_username, self.sheety_password))
-            pprint(put.text)
+
