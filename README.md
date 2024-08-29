@@ -15,6 +15,7 @@
 # Usage Guide
 1. Create a google sheet in the given format and connect it to sheety.
 ![Sheet Image](./sheet_screenshot.png)
+
 The price in sheet is GBP (Pounds)
 You can give prices in any currency supported by Amadeus(see [Amadeus API Documentation](https://developers.amadeus.com/self-service/category/flights/api-doc/flight-offers-search/api-reference)). Make sure to change currency_code in flight_search.py at line 67. 
 
