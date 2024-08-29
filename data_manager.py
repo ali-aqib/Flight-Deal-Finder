@@ -1,6 +1,5 @@
 import requests
 from requests.auth import HTTPBasicAuth
-from pprint import pprint
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -27,7 +26,7 @@ class DataManager:
             updated_row = {
                 "price": {"iataCode": row["iataCode"]}
             }
-            write_data = requests.put(url=f"{SHEETY_ENDPOINT}/{row['id']}",
-                               json=updated_row,
-                               auth=HTTPBasicAuth(self.sheety_username, self.sheety_password))
+            requests.put(url=f"{SHEETY_ENDPOINT}/{row['id']}",
+                         json=updated_row,
+                         auth=HTTPBasicAuth(self.sheety_username, self.sheety_password))
 
